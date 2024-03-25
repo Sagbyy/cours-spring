@@ -1,6 +1,9 @@
 package fr.sagby.pingpongtournamentbackend.tournament.rest.dto;
 
+import fr.sagby.pingpongtournamentbackend.tournament.domain.Tournament;
+
 import java.time.LocalDate;
+import java.util.List;
 
 public class TournamentCreateResponseDTO {
     public String name;

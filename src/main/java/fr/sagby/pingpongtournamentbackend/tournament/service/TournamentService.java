@@ -4,10 +4,12 @@ import fr.sagby.pingpongtournamentbackend.tournament.domain.Tournament;
 import fr.sagby.pingpongtournamentbackend.tournament.repo.TournamentRepo;
 import fr.sagby.pingpongtournamentbackend.tournament.rest.dto.TournamentCreateRequestDTO;
 import fr.sagby.pingpongtournamentbackend.tournament.rest.dto.TournamentCreateResponseDTO;
+import fr.sagby.pingpongtournamentbackend.tournament.rest.dto.TournamentGetAllResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -42,8 +44,15 @@ public class TournamentService {
         return res;
     }
 
+    public TournamentGetAllResponseDTO getAllTournaments() {
+        return toDto(tournamentRepo.findAll());
+    }
+
     private TournamentCreateResponseDTO toDto(Tournament src) {
-        TournamentCreateResponseDTO res = new TournamentCreateResponseDTO(src.name, src.maxParticipants, src.startDate);
-        return res;
+        return new TournamentCreateResponseDTO(src.name, src.maxParticipants, src.startDate);
+    }
+
+    private TournamentGetAllResponseDTO toDto(List<Tournament> src) {
+        return new TournamentGetAllResponseDTO(src);
     }
 }

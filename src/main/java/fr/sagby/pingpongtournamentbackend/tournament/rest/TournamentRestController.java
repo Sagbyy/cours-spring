@@ -2,6 +2,7 @@ package fr.sagby.pingpongtournamentbackend.tournament.rest;
 
 import fr.sagby.pingpongtournamentbackend.tournament.rest.dto.TournamentCreateRequestDTO;
 import fr.sagby.pingpongtournamentbackend.tournament.rest.dto.TournamentCreateResponseDTO;
+import fr.sagby.pingpongtournamentbackend.tournament.rest.dto.TournamentGetAllResponseDTO;
 import fr.sagby.pingpongtournamentbackend.tournament.service.TournamentService;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
@@ -28,5 +29,14 @@ public class TournamentRestController {
     })
     public TournamentCreateResponseDTO create(@RequestBody TournamentCreateRequestDTO req) {
         return tournamentService.createTournament(req);
+    }
+
+    @GetMapping("/all")
+    @Operation(summary = "Get all tournaments")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Successful operation"),
+    })
+    public TournamentGetAllResponseDTO getAll() {
+        return tournamentService.getAllTournaments();
     }
 }
